@@ -3,16 +3,19 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Background
+  - Ground
+  - Fish
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Backgorund
   - Water
   - UI
-  - 
-  - 
+  - Ground
+  - Fish
   - 
   - 
   - 
@@ -40,4 +43,13 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Background
+    uniqueID: 3291064805
+    locked: 0
+  - name: Ground
+    uniqueID: 1009533509
+    locked: 0
+  - name: Fish
+    uniqueID: 1491078011
     locked: 0
