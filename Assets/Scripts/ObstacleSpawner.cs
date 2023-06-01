@@ -11,12 +11,12 @@ public class ObstacleSpawner : MonoBehaviour
                            So we need to create a Timer.
                             We have defined the maxTimer variable that we will control over the editor.*/
     float timer;
-    public float maxY;
-    public float minY;
+    public float maxY; //maximum rise rate obstacle
+    public float minY; //minumum increase rate obstacle
     float randomY;
     void Start()
     {
-        InstantiateObstacle();
+        InstantiateObstacle(); 
     }
 
     // Update is called once per frame

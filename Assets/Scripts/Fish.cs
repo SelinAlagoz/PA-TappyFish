@@ -62,7 +62,11 @@ public class Fish : MonoBehaviour
         transform.rotation = Quaternion.Euler(0, 0, angle); // for angular rotation.
     }
      private void OnTriggerEnter2D(Collider2D collision) {
-        score.Scored();
-        //Debug.Log("Scored!...");
+       if(collision.CompareTag("Obstacle"))
+       {
+         score.Scored();
+         //Debug.Log("Scored!...");
+       }
+        
     }
 }
