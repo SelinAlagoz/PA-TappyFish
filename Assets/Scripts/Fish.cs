@@ -13,6 +13,7 @@ public class Fish : MonoBehaviour
     int maxAngle = 20;
     [SerializeField] 
     int minAngle = -60;
+    public Score score;
     void Start()
     {
         _rb = GetComponent<Rigidbody2D>(); // we transferred our component to the variable we defined.In short,we gave its value.
@@ -25,8 +26,11 @@ public class Fish : MonoBehaviour
     void Update()
     {
       FishSwim();
-      FishHeadRotation();
+      
     
+    }
+    private void FixedUpdate() {
+        FishHeadRotation();
     }
 
     void FishSwim(){ //function
@@ -56,5 +60,9 @@ public class Fish : MonoBehaviour
             }
         } 
         transform.rotation = Quaternion.Euler(0, 0, angle); // for angular rotation.
+    }
+     private void OnTriggerEnter2D(Collider2D collision) {
+        score.Scored();
+        //Debug.Log("Scored!...");
     }
 }

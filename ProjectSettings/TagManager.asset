@@ -8,6 +8,8 @@ TagManager:
   - Ground
   - Fish
   - Obstacle
+  - Column
+  - Canvas
   layers:
   - Default
   - TransparentFX
@@ -56,4 +58,7 @@ TagManager:
     locked: 0
   - name: Fish
     uniqueID: 1491078011
+    locked: 0
+  - name: Canvas
+    uniqueID: 3636267233
     locked: 0
