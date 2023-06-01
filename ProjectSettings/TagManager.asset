@@ -7,6 +7,7 @@ TagManager:
   - Background
   - Ground
   - Fish
+  - Obstacle
   layers:
   - Default
   - TransparentFX
@@ -16,7 +17,7 @@ TagManager:
   - UI
   - Ground
   - Fish
-  - 
+  - Obstacle
   - 
   - 
   - 
@@ -46,6 +47,9 @@ TagManager:
     locked: 0
   - name: Background
     uniqueID: 3291064805
+    locked: 0
+  - name: Obstacle
+    uniqueID: 2698078697
     locked: 0
   - name: Ground
     uniqueID: 1009533509
