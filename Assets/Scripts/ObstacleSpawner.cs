@@ -16,19 +16,23 @@ public class ObstacleSpawner : MonoBehaviour
     float randomY;
     void Start()
     {
-        InstantiateObstacle(); 
+        //InstantiateObstacle(); 
     }
 
     // Update is called once per frame
     void Update()
     {
-        timer += Time.deltaTime;//We added time.Deltatime so that our timer works properly.
+        if (GameManager.gameOver == false && GameManager.gameStarted == true)
+        {
+            timer += Time.deltaTime;//We added time.Deltatime so that our timer works properly.
         if(timer >= maxTime)
         {
             randomY = Random.Range(minY,maxY);
             InstantiateObstacle();
             timer = 0;
         }
+        }
+        
     }
 
     public void InstantiateObstacle() //our function to create new objects.

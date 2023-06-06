@@ -14,11 +14,20 @@ public class Fish : MonoBehaviour
     [SerializeField] 
     int minAngle = -60;
     public Score score;
+    bool touchGround;
+    public GameManager gameManager;
+    public Sprite fishDied;
+    SpriteRenderer sp;
+    Animator anim;
+    public ObstacleSpawner obstaclespawner;
     void Start()
     {
         _rb = GetComponent<Rigidbody2D>(); // we transferred our component to the variable we defined.In short,we gave its value.
+         sp = GetComponent<SpriteRenderer>();
+        anim = GetComponent<Animator>();
+        _rb.gravityScale = 0; //Since we defined the rigidbody above, we wrote the gravityscale function below it. To stop the fish at the start of the game.
         // now we can access the "Rigidbody2D" variables in unity from here.
-        //rb.gravityScale = 0;
+       
        
     }
 
@@ -33,11 +42,23 @@ public class Fish : MonoBehaviour
         FishHeadRotation();
     }
 
-    void FishSwim(){ //function
-   if(Input.GetMouseButtonDown(0))
-        {   
-            _rb.velocity = Vector2.zero; //Every time we press the left mouse button, we reset our speed before pressing it so that our speed does not change.
-            _rb.velocity = new Vector2(_rb.velocity.x,_speed);//We defined the velocity variable as vector2 because; We wonnt have a job on the x-axis.Our fish will move up and down the y-axis.We left the x-axis as is, and we initially launched the y-axis as a float with a power of 9 units.
+    void FishSwim()
+    { //function
+        if(Input.GetMouseButtonDown(0) && GameManager.gameOver == false)
+        {  
+            if(GameManager.gameStarted == false)
+            {
+                _rb.gravityScale = 2f;
+                _rb.velocity = Vector2.zero;
+                _rb.velocity = new Vector2(_rb.velocity.x, _speed);
+                obstaclespawner.InstantiateObstacle();
+                gameManager.GameHasStarted();
+            }
+            else 
+            {
+              _rb.velocity = Vector2.zero; //Every time we press the left mouse button, we reset our speed before pressing it so that our speed does not change.
+              _rb.velocity = new Vector2(_rb.velocity.x,_speed);//We defined the velocity variable as vector2 because; We wonnt have a job on the x-axis.Our fish will move up and down the y-axis.We left the x-axis as is, and we initially launched the y-axis as a float with a power of 9 units.
+            }
         }
     }
 
@@ -59,14 +80,44 @@ public class Fish : MonoBehaviour
                 angle = angle -2;
             }
         } 
-        transform.rotation = Quaternion.Euler(0, 0, angle); // for angular rotation.
+        if(touchGround == false)
+        {
+            transform.rotation = Quaternion.Euler(0, 0, angle); // for angular rotation.
+        }
+        
     }
-     private void OnTriggerEnter2D(Collider2D collision) {
+   private void OnTriggerEnter2D(Collider2D collision) 
+   {
        if(collision.CompareTag("Obstacle"))
        {
-         score.Scored();
-         //Debug.Log("Scored!...");
+           score.Scored();
+           //Debug.Log("Scored!...");
+       }
+       else if(collision.CompareTag("Column"))
+       {
+           //game over
+           gameManager.GameOver();
+           GameOver();
        }
         
     }
-}
+    private void OnCollisionEnter2D(Collision2D collision){
+        if(collision.gameObject.CompareTag("Ground")){
+            if(GameManager.gameOver == false)
+            {
+                gameManager.GameOver();
+                GameOver();
+            }
+            
+        }
+        
+    }
+    void GameOver()
+    {
+        touchGround = true;
+        transform.rotation = Quaternion.Euler(0, 0, -90);
+        sp.sprite = fishDied;
+        anim.enabled = false;
+    }
+    }
+

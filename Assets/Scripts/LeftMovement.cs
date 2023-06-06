@@ -26,9 +26,13 @@ public class LeftMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-      transform.position = new Vector2 (transform.position.x - speed * Time.deltaTime, transform.position.y);  //Since the update function can change according to the operating speed of our computer, we use time*deltatime. In this way, it always works in the same time interval.
-      /*!!!My first mistake; I unconsciously wrote the transform.position code in the start function, which caused it to go 3 units to the left and leave it in a single frame,
+      if(GameManager.gameOver == false) //If the game is not finished, do this.
+      {
+        transform.position = new Vector2 (transform.position.x - speed * Time.deltaTime, transform.position.y);  //Since the update function can change according to the operating speed of our computer, we use time*deltatime. In this way, it always works in the same time interval.
+          /*!!!My first mistake; I unconsciously wrote the transform.position code in the start function, which caused it to go 3 units to the left and leave it in a single frame,
            When I got the update, our place was constantly slipping from under our feet, as it was constantly running in every frame.!!! */
+      }
+      
       if(gameObject.CompareTag("Ground"))
       {
          if(transform.position.x <= -groundWidth) //if our current position is small and equal to the width of the ground
