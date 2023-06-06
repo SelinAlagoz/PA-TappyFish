@@ -20,6 +20,7 @@ public class Fish : MonoBehaviour
     SpriteRenderer sp;
     Animator anim;
     public ObstacleSpawner obstaclespawner;
+    [SerializeField] private AudioSource swim, hit, point;
     void Start()
     {
         _rb = GetComponent<Rigidbody2D>(); // we transferred our component to the variable we defined.In short,we gave its value.
@@ -45,7 +46,7 @@ public class Fish : MonoBehaviour
     void FishSwim()
     { //function
         if(Input.GetMouseButtonDown(0) && GameManager.gameOver == false)
-        {  
+        {   swim.Play();
             if(GameManager.gameStarted == false)
             {
                 _rb.gravityScale = 2f;
@@ -91,11 +92,13 @@ public class Fish : MonoBehaviour
        if(collision.CompareTag("Obstacle"))
        {
            score.Scored();
+           point.Play();
            //Debug.Log("Scored!...");
        }
-       else if(collision.CompareTag("Column"))
+       else if(collision.CompareTag("Column") && GameManager.gameOver == false)
        {
            //game over
+           FishDieEffect();
            gameManager.GameOver();
            GameOver();
        }
@@ -105,12 +108,17 @@ public class Fish : MonoBehaviour
         if(collision.gameObject.CompareTag("Ground")){
             if(GameManager.gameOver == false)
             {
+                FishDieEffect();
                 gameManager.GameOver();
                 GameOver();
             }
             
         }
         
+    }
+    void FishDieEffect()
+    {
+        hit.Play();
     }
     void GameOver()
     {
