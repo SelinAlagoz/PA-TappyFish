@@ -17,6 +17,7 @@ public class Fish : MonoBehaviour
     bool touchGround;
     public GameManager gameManager;
     public Sprite fishDied;
+    public Bubbles bubbles;
     SpriteRenderer sp;
     Animator anim;
     public ObstacleSpawner obstaclespawner;
@@ -126,6 +127,7 @@ public class Fish : MonoBehaviour
         transform.rotation = Quaternion.Euler(0, 0, -90);
         sp.sprite = fishDied;
         anim.enabled = false;
+        bubbles.stopBubbles();
     }
     }
 

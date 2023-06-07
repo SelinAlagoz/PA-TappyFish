@@ -10,6 +10,7 @@ TagManager:
   - Obstacle
   - Column
   - Canvas
+  - bubbless
   layers:
   - Default
   - TransparentFX
@@ -20,7 +21,7 @@ TagManager:
   - Ground
   - Fish
   - Obstacle
-  - 
+  - Bubbles
   - 
   - 
   - 
