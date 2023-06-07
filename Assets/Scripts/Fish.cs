@@ -22,6 +22,13 @@ public class Fish : MonoBehaviour
     Animator anim;
     public ObstacleSpawner obstaclespawner;
     [SerializeField] private AudioSource swim, hit, point;
+
+    private bool isButtonHeld = false;
+    private bool isMovingForward = false;
+    private float holdDuration = 0f;
+    private float maxHoldDuration = 0.5f;
+    private float forwardDuration = 2f;
+    private float forwardTimer = 0f;
     void Start()
     {
         _rb = GetComponent<Rigidbody2D>(); // we transferred our component to the variable we defined.In short,we gave its value.
@@ -38,16 +45,17 @@ public class Fish : MonoBehaviour
     {
       FishSwim();
       
-    
     }
     private void FixedUpdate() {
-        FishHeadRotation();
+      FishHeadRotation();
     }
 
     void FishSwim()
     { //function
         if(Input.GetMouseButtonDown(0) && GameManager.gameOver == false)
         {   swim.Play();
+            isButtonHeld = true;
+            holdDuration = 0f;
             if(GameManager.gameStarted == false)
             {
                 _rb.gravityScale = 2f;
@@ -57,14 +65,32 @@ public class Fish : MonoBehaviour
                 gameManager.GameHasStarted();
             }
             else 
-            {
+            {   
               _rb.velocity = Vector2.zero; //Every time we press the left mouse button, we reset our speed before pressing it so that our speed does not change.
               _rb.velocity = new Vector2(_rb.velocity.x,_speed);//We defined the velocity variable as vector2 because; We wonnt have a job on the x-axis.Our fish will move up and down the y-axis.We left the x-axis as is, and we initially launched the y-axis as a float with a power of 9 units.
+              isMovingForward = true;forwardTimer = 0f;
             }
         }
-    }
+        if (isMovingForward)
+     {
+        forwardTimer += Time.deltaTime;
+        if(forwardTimer >= forwardDuration)
+        {   
+            isMovingForward = false;
+            _rb.velocity = new Vector2(forwardDuration, _rb.velocity.y);
+            StartCoroutine(StopForwardMoment());
+           
+        }
+          holdDuration += Time.deltaTime; 
+      } 
+   }
+   IEnumerator StopForwardMoment()
+   {
+     yield return new WaitForSeconds(2f);
+    _rb.velocity = new Vector2(0f, _rb.velocity.y);
+   }
 
-    void FishHeadRotation(){
+void FishHeadRotation(){
                     /*We want the fish to make a movement as it goes up and down.
                   The velocity moves upwards if it is a positive direction and downwards if it is a negative sign. We will check this.
                   For this, we want it to move at a certain angle when going up and at a certain angle when going down. */
