@@ -888,7 +888,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bubbles: {fileID: 889509309}
-  FishDiedBubbles: {fileID: 0}
+  FishDiedBubbles: {fileID: -4821972468164150832, guid: 5603f15081e86e94ebca2d2906a5c697, type: 3}
   fish: {fileID: 1396465360}
 --- !u!1 &1244051421
 GameObject:

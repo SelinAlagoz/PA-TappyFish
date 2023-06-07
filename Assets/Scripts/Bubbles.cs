@@ -25,6 +25,7 @@ public class Bubbles : MonoBehaviour
     {
          if(GameManager.gameOver == true)
         {
+            spbubbles.sprite = FishDiedBubbles;
             bubbles.enabled = false;
         }
       
