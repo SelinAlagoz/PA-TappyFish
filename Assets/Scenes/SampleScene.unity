@@ -291,6 +291,58 @@ MonoBehaviour:
   panelScore: {fileID: 225560801}
   panelHighScore: {fileID: 1657614169}
   New: {fileID: 1985134403}
+--- !u!1 &158009135
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 158009137}
+  - component: {fileID: 158009136}
+  m_Layer: 0
+  m_Name: HookSpawner
+  m_TagString: Untagged
+  m_Icon: {fileID: 5132851093641282708, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &158009136
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 158009135}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1f4c360e03c09c1458f4107cf783dbf0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  yukariKancaPrefab: {fileID: 7891581265596819477, guid: 55ea354b1c38bc94cae94285fa843984, type: 3}
+  asagiKancaPrefab: {fileID: 2740643192586498942, guid: 19bd8c9995ea83540a045ecffa585481, type: 3}
+  upHook: {fileID: 2740643192586498936, guid: 19bd8c9995ea83540a045ecffa585481, type: 3}
+  spawnAraligi: 4
+  minSpawnX: -2
+  maxSpawnX: 2
+  spawnPozisyonu: {x: -2, y: 8.4}
+  opSpawnPozisyonu: {x: 2.3, y: -8.3}
+  asagiSpawnNoktasi: {fileID: 7891581265596819478, guid: 55ea354b1c38bc94cae94285fa843984, type: 3}
+--- !u!4 &158009137
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 158009135}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.01, y: -0.2, z: -2.3275814}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 10
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &225560799
 GameObject:
   m_ObjectHideFlags: 0
@@ -1049,7 +1101,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f3046223c33567d4db14bcb91851fe74, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _speed: 10
+  _speed: 9
   maxAngle: 20
   minAngle: -60
   score: {fileID: 11430782}

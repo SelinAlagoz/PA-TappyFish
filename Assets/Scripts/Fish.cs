@@ -103,6 +103,12 @@ public class Fish : MonoBehaviour
            gameManager.GameOver();
            GameOver();
        }
+       else if(collision.CompareTag("Hook") && GameManager.gameOver == false)
+       {
+           FishDieEffect();
+           gameManager.GameOver();
+           GameOver();
+       }
         
     }
     private void OnCollisionEnter2D(Collision2D collision){
